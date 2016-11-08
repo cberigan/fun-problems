@@ -2,10 +2,12 @@ package com.problems.sorting;
 
 public class QuickSort implements ISort{
 	
+	@Override
 	public String GetAlgorithm() {
 		return "QuickSort";
 	}
 	
+	@Override
 	public void sort(int[] arr){
 		if(arr == null || arr.length == 0){
 			return;
@@ -15,33 +17,32 @@ public class QuickSort implements ISort{
 	
 	private void quickSort(int[] arr, int start, int end){
 		
-		int pivot = ( start + end ) / 2;
+		if(end <= start) return;
 		
-		int i = start;
-		int j = end;
-		while( i < j ){
-			
-			//find item on left that should be on right
-			while(arr[i] < arr[pivot]){
-				i++;
+		int divider = this.partition(arr, start, end);
+		this.quickSort(arr, start, divider-1);
+		this.quickSort(arr, divider + 1, end);
+		
+	}
+	
+	private void exchange(int[] arr, int a, int b){
+		int temp = arr[a];
+		arr[a] = arr[b];
+		arr[b] = temp;
+	}
+
+	private int partition(int[] arr, int start,int end){
+		
+		int pivot = arr[end];
+		int divider = start;
+		
+		for(int test = start; test <= end-1;test++){
+			if(arr[test] <= pivot){
+				this.exchange(arr, divider, test);
+				divider++;
 			}
-			//find item on right that should be on the left
-			while(arr[j] > arr[pivot]){
-				j--;
-			}
-			
-			//switch them
-			int temp=arr[j];
-			arr[j] = arr[i];
-			arr[i] = temp;
-			
-			j--;
-			i++;
-			
 		}
-		
-		this.quickSort(arr, start, pivot);
-		this.quickSort(arr, pivot + 1, end);
-		
+		this.exchange(arr, divider, end);
+		return divider;
 	}
 }

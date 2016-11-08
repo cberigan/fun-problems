@@ -30,13 +30,16 @@ public class SortingTest {
 			
 			int[] tempArr = Arrays.copyOf(arr, arr.length);
 			System.out.println("--" + s.GetAlgorithm() + "--");
-			MergeSort ms = new MergeSort();
 			long startTime = System.nanoTime();
-			ms.sort(tempArr);
+			s.sort(tempArr);
 			long endTime = System.nanoTime();
 			
 			System.out.println("After: " + Arrays.toString(tempArr));
 			System.out.println("Time: " + (endTime - startTime) );
+			
+			for(int i = 1; i < tempArr.length;i++){
+				assertTrue(s.GetAlgorithm() + " did not sort the array correctly.",tempArr[i] >= tempArr[i-1]);
+			}
 		}
 		
 	}

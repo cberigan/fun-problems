@@ -2,10 +2,12 @@ package com.problems.sorting;
 
 public class MergeSort implements ISort{
 	
+	@Override
 	public String GetAlgorithm() {
 		return "MergeSort";
 	}
 	
+	@Override
 	public void sort(int[] arr){
 		if(arr == null || arr.length == 0){
 			return;

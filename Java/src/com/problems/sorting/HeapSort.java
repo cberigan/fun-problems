@@ -14,10 +14,10 @@ public class HeapSort implements ISort {
 	
 	private void heapSort(int[] arr){
 		this.buildMaxHeap(arr);
-		for(int i = arr.length; i >=2;i--){
-			this.exchange(arr, 1, i);
+		for(int i = arr.length-1; i >=0;i--){
+			this.exchange(arr, 0, i);
 			this.heapSize -= 1;
-			this.maxHeapify(arr, 1);
+			this.maxHeapify(arr, 0);
 		}
 	}
 	
@@ -28,7 +28,7 @@ public class HeapSort implements ISort {
 	}
 	
 	private void buildMaxHeap(int[] arr){
-		this.heapSize = arr.length;
+		this.heapSize = arr.length-1;
 		for(int i = (int)Math.floor(this.heapSize / 2.0); i >= 0;i--){
 			this.maxHeapify(arr,i);
 		}

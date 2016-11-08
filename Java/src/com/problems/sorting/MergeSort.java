@@ -1,22 +1,16 @@
 package com.problems.sorting;
 
-import java.util.Arrays;
-
-public class MergeSort {
-
-	public static void main(String[] args) {
-		int values = 20;
-		
-		int[] arr = new int[values];
-		
-		for(int i = 0;i < values;i++){
-			arr[i] = (int)(Math.random() * 100.0);
+public class MergeSort implements ISort{
+	
+	public String GetAlgorithm() {
+		return "MergeSort";
+	}
+	
+	public void sort(int[] arr){
+		if(arr == null || arr.length == 0){
+			return;
 		}
-		
-		System.out.println("Before: " + Arrays.toString(arr));
-		MergeSort ms = new MergeSort();
-		ms.mergeSort(arr,0, arr.length-1);
-		System.out.println("After: " + Arrays.toString(arr));
+		this.mergeSort(arr, 0, arr.length-1);
 	}
 	
 	private void mergeSort(int[] arr, int start, int end){
